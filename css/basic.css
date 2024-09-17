@@ -1,0 +1,35 @@
+/*----
+    Estilos 
+----*/
+
+
+
+/*----
+    Estilos BORDER
+----*/
+.border_pri{border-color: var(--color-primary) !important;}
+.border_sec{border-color: var(--color-secondary) !important;}
+.border_thi{border-color: var(--color-third) !important;}
+.border_fou{border-color: var(--color-fourth) !important;}
+.border_fif{border-color: var(--color-fifth) !important;}
+
+.border_b1{border: 1px solid !important;}
+.border_b2{border: 2px solid !important;}
+.border_b3{border: 3px solid !important;}
+
+.rad5{border-radius: 5px;}
+.rad20{border-radius: 30px;}
+.rad50{border-radius: 50%;}
+
+
+/*
+    border: 4px double black;   double: Bordes dobles. Se crean con dos líneas paralelas separadas por un espacio.
+    border: 4px groove black;   groove: Bordes con un efecto de relieve. Parecen estar incrustados en la página.
+    border: 4px ridge black;    ridge: Bordes con un efecto de relieve. Parecen sobresalir de la página.
+    border: 4px inset black;    inset: Bordes con un efecto de profundidad. Parecen estar incrustados en el elemento.
+    border: 4px outset black;   outset: Bordes con un efecto de profundidad. Parecen sobresalir del elemento.
+*/
+
+.border_verify{border: 1px solid var(--color-verify)!important;}
+.border_danger{border: 1px solid var(--color-danger)!important;}
+.border_alert{border: 1px solid var(--color-alert)!important;}

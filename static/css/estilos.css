@@ -1,0 +1,149 @@
+@import url(colors.css);
+@import url(font.css);
+@import url(basic.css);
+@import url(https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap);
+
+* {
+    box-sizing: border-box; /* Asegura que el padding y border no afecten el tamaño total */
+}
+
+body {
+    margin: 0px; /*10px*/
+    height: 200vh; /*97vh*/
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    overflow-y: scroll;
+}
+
+body::-webkit-scrollbar {
+    display: none; /* o 'width: 0;' en lugar de 'display: none;' */
+}
+
+/* Espacio responsive */
+.grid-container > * {
+    /*box-shadow: 6px 6px 20px -13px rgba(51, 51, 51, 0.74);*/
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+    background: #b62121;
+}
+
+.grid-container {
+    color: #000;
+    display: grid;
+    padding: 5px;
+    gap: 5px;
+    grid-template-areas:
+        "nav-logo nav-user"
+        "header header"
+        "aside aside"
+        "section section";
+    grid-template-rows: 50px 50px auto auto;
+    grid-template-columns: auto auto;
+}
+
+.nav-logo { grid-area: nav-logo; }
+.header { grid-area: header; }
+.aside { 
+    grid-area: aside; 
+    background: #f1f1f1;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    aspect-ratio: 4/4;
+    width: 100%;
+    max-height: 80vh;
+}
+.section { 
+    grid-area: section; 
+    width: 100%;
+    height: 100%;
+    margin-top: auto;
+    aspect-ratio: 4/10;
+    max-height: 99vh;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+    font-size: 8vw; /* Ajusta el tamaño de la fuente en función del ancho de la ventana */
+    font-weight: 700;
+    letter-spacing: 5px;    
+    word-spacing: 50px;
+    justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-areas:
+        "nav-logo nav-user"
+        "header header"
+        "aside aside"
+        "section section";
+        grid-template-rows: 80px 80px auto auto;
+        grid-template-columns: 400px auto;
+    }
+    p {
+        padding: 0;
+        margin: 0;
+        font-size: 6vw; /* Ajusta el tamaño de la fuente en función del ancho de la ventana */
+        font-weight: 700;
+        word-spacing: 80px;
+    }
+}
+
+@media (min-width: 992px) {
+    .grid-container {
+        grid-template-areas: 
+            "nav-logo header nav-user"
+            "aside aside aside"
+            "section section section";
+        grid-template-rows: 90px auto auto;
+        grid-template-columns: 250px auto 250px;
+    }
+    p {
+        padding: 0;
+        margin: 0;
+        font-size: 6.2vw; /* Ajusta el tamaño de la fuente en función del ancho de la ventana */
+        font-weight: 700;
+        word-spacing: 90px;
+    }
+}
+@media (min-width: 1500px) {
+    .grid-container {
+        grid-template-areas: 
+            "nav-logo header nav-user"
+            "aside aside aside"
+            "section section section";
+        grid-template-rows: 90px auto auto;
+        grid-template-columns: 300px auto 300px;
+    }
+    p {
+        padding: 0;
+        margin: 0;
+        font-size: 6.0vw; /* Ajusta el tamaño de la fuente en función del ancho de la ventana */
+        font-weight: 700;
+        word-spacing: 120px;
+    }
+}
+@media (min-width: 1669px) {
+    .grid-container {
+        grid-template-areas: 
+            "nav-logo header nav-user"
+            "aside aside aside"
+            "section section section";
+        grid-template-rows: 90px auto auto;
+        grid-template-columns: 300px auto 300px;
+    }
+    p {
+        padding: 0;
+        margin: 0;
+        font-size: 6.8vw; /* Ajusta el tamaño de la fuente en función del ancho de la ventana */
+        font-weight: 700;
+        word-spacing: 110px;
+    }
+}

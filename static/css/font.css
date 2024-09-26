@@ -1,0 +1,83 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+/*
+.family-1{font-family: ;}
+.family-2{font-family: ;}
+.family-3{font-family: ;}
+.family-4{font-family: ;}
+.family-5{font-family: ;}
+.family-6{font-family: ;}
+*/
+  
+
+.dancing-script-uniquifier {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+}
+
+.allura-regular {
+    font-family: "Allura", cursive !important;
+    font-weight: 400;
+}
+
+.noto-serif-jp-uniquifier {
+  font-family: "Noto Serif JP", serif;
+  font-optical-sizing: auto;
+}
+
+.jacques-francois-shadow-regular {
+    font-family: "Jacques Francois Shadow", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.sacramento-regular {
+    font-family: "Sacramento", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.tangerine-regular {
+    font-family: "Tangerine", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.tangerine-bold {
+    font-family: "Tangerine", cursive;
+}
+
+.anton-regular {
+    font-family: "Anton", sans-serif;
+}
+  
+.oswald-regular {
+  font-family: "Oswald", sans-serif;
+}
+
+.manrope-regular {
+    font-family: "Manrope", sans-serif;
+}
+
+.space-grotesk-regular {
+    font-family: "Space Grotesk", sans-serif;
+}

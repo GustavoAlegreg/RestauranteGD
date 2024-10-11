@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Productos</title>
+    <link rel="stylesheet" href="../css/productos.css">
+</head>
+<body>
+    <main id="administrar-productos" class="administrar-productos">
+        <form action="/administrar_productos" method="post" class="administrar-productos-form">
+            <input type="text" id="codigo" name="codigo" class="administrar-productos-input" placeholder="Código del producto"><br>
+            <input type="text" id="nombre" name="nombre" class="administrar-productos-input" placeholder="Nombre del producto"><br>
+            <input type="text" id="descripcion" name="descripcion" class="administrar-productos-input" placeholder="Descripción del producto"><br>
+            <input type="number" id="cantidad" name="cantidad" class="administrar-productos-input" placeholder="Cantidad del producto"><br>
+            <input type="text" id="precio" name="precio" class="administrar-productos-input" placeholder="Precio del producto"><br>
+            <input type="text" id="imagen" name="imagen" class="administrar-productos-input" placeholder="URL de la imagen del producto"><br>
+            <select id="categoria" name="categoria" class="administrar-productos-input">
+                <option value="" disabled selected>Selecciona una categoría</option>
+                <option value="categoria1">Categoría 1</option>
+                <option value="categoria2">Categoría 2</option>
+                <option value="categoria3">Categoría 3</option>
+            </select><br>
+            <select id="tipos" name="tipos" class="administrar-productos-input">
+                <option value="" disabled selected>Selecciona un tipo</option>
+                <option value="tipo1">Tipo 1</option>
+                <option value="tipo2">Tipo 2</option>
+                <option value="tipo3">Tipo 3</option>
+            </select><br>
+            <input type="submit" value="Agregar" class="administrar-productos-submit">            
+        </form>       
+    </main>
+    <section class="section">
+        <div class="carta">
+            <h3 class="title-list">Lista de Productos en la Carta</h3>
+            <div class="buscador">
+                <input type="text" id="buscador" placeholder="Buscar producto" class="buscador-input">
+                <button id="buscar" class="buscador-button">Buscar</button>
+            </div>
+            <div class="carta-container" id="carta-container">
+                <!-- Las tarjetas se generarán dinámicamente aquí -->
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulación de datos de platillos (en una aplicación real, estos datos vendrían de una API o base de datos)
+            const productos = [
+                { codigo: 'P001', cantidad: 1, nombre: 'Quesadillas', descripcion: 'Quesadillas de queso oaxaca', precio: '$60', imagen: '/static/imgprod/platos.jpg' },
+                { codigo: 'P002', cantidad: 1, nombre: 'Mole Poblano', descripcion: 'Tradicional mole poblano con pollo', precio: '$150', imagen: '/static/imgprod/platos.jpg' },     
+                { codigo: 'B001', cantidad: 1, nombre: 'Té', descripcion: 'Té caliente o frío', precio: '$40', imagen: '/static/imgprod/bebidas.jpg' },
+                { codigo: 'B002', cantidad: 1, nombre: 'Refresco', descripcion: 'Refresco de cola o limón', precio: '$30', imagen: '/static/imgprod/bebidas.jpg' },
+                { codigo: 'B003', cantidad: 1, nombre: 'Jugo', descripcion: 'Jugo natural de naranja o toronja', precio: '$35', imagen: '/static/imgprod/bebidas.jpg' },
+                { codigo: 'P003', cantidad: 1, nombre: 'Pastel de Chocolate', descripcion: 'Delicioso pastel de chocolate', precio: '$90', imagen: '/static/imgprod/postres.jpg' }     
+            ];
+
+            const cartaContainer = document.getElementById('carta-container');
+
+            // Crear un objeto para almacenar las tarjetas de cada categoría
+            const tarjetas = [];
+
+            // Llenar el objeto con las tarjetas de cada categoría
+            productos.forEach(producto => {
+                const tarjeta = document.createElement('div');
+                tarjeta.className = 'tarjeta-platillo';
+                tarjeta.innerHTML = `
+                    <div class="imagen-platillo-container">
+                        <img src="${producto.imagen}" alt="${producto.nombre}" class="imagen-platillo">
+                    </div>
+                    <div class="info-platillo">
+                        <h4>Código: ${producto.codigo}</h4>
+                        <h4>Cantidad: ${producto.cantidad}</h4>
+                        <h4>${producto.nombre}</h4>
+                        <p>${producto.descripcion}</p>
+                        <span class="precio">${producto.precio}</span>
+                    </div>
+                    <div class="acciones-platillo">
+                        <button class="eliminar"><i class="fas fa-trash-alt"></i></button>
+                        <button class="actualizar"><i class="fas fa-edit"></i></button>
+                        <button class="ver-mas"><i class="fas fa-eye"></i></button>
+                    </div>
+                `;
+                tarjetas.push(tarjeta);
+            });
+
+            // Mostrar las tarjetas
+            tarjetas.forEach(tarjeta => {
+                cartaContainer.appendChild(tarjeta);
+            });
+        });
+    </script>
+
+</body>
+</html>

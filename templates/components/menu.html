@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú</title>
+    <link rel="stylesheet" href="../../css/colors.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .menu {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+        }
+        .menu-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin: 0 10px;
+            position: relative;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--second-color);
+        }
+        .nav-links li::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--second-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        .nav-links li:hover::after {
+            width: 100%;
+        }
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        .user-actions a {
+            margin-left: 15px;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        .user-actions .icon {
+            font-size: 20px;
+        }
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="menu">
+        <div class="menu-container">
+            <div class="logo">Logo</div>
+            <ul class="nav-links">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Carta</a></li>
+                <li><a href="#">Nosotros</a></li>
+            </ul>
+            <div class="user-actions">
+                <a href="#" class="icon" title="Carrito">🛒</a>
+                <a href="#" class="icon" title="Usuario">👤</a>
+                <a href="#" title="Iniciar Sesión">Iniciar Sesión</a>
+                <button class="dark-mode-toggle" title="Cambiar modo oscuro">🌓</button>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

@@ -1,5 +1,4 @@
 :root {
-
     --base-color: #FCF5F4;
     --base-variant: #ededed;
     --text-color: #271B1B;
@@ -8,13 +7,14 @@
     --color-dark: #060606;
     --color-light: #FFFFFF;
 
-    /* Colors */
+    /* Colores principales */
     --color-primary: #DED1CA;
     --color-secondary: #543B3A;
     --color-third: #271B1B;
     --color-fourth: #3D3D3D;
     --color-fifth: #963A3D;
 
+    /* Colores de estado */
     --color-verify: #19B235;
     --color-danger: #A93234;
     --color-alert: #f6c000;
@@ -24,18 +24,26 @@
 }
 
 .darkmode {
-    --primary-color: #0a0a0b;
-    --second-color: #a28200;
-    --simple-color: #000;
-    --base-color: rgb(11, 18, 11);
-    --primery-color: #fff;
-    --base-variant: #0a0a0b;
+    --base-color: #0a0a0b;
+    --base-variant: #1a1a1b;
     --text-color: #fcfcfc;
+    --primary-color: #543B3A;
+    --second-color: #C9B2A8;
+    --color-dark: #fcfcfc;
+    --color-light: #060606;
 
-    --color-light: #f8fbff;
-    --color_dark: #fcfcfc;
-    --color_span: #e0e0e0;
-    --color_border: #232426;
+    /* Colores principales en modo oscuro */
+    --color-primary: #543B3A;
+    --color-secondary: #C9B2A8;
+    --color-third: #FCF5F4;
+    --color-fourth: #BDBDBD;
+    --color-fifth: #DB9691;
+
+    /* Colores de estado en modo oscuro */
+    --color-verify: #2ECC71;
+    --color-danger: #E74C3C;
+    --color-alert: #F39C12;
+    --color-subalert: #34495E;
 
     --eclipse: #878787;
 }

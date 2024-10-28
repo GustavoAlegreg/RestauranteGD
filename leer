@@ -1,0 +1,20 @@
+Esta es la estructura correcta con mvc y dao
+├───app
+│   ├───controllers
+│   ├───dao
+│   ├───models
+│   └───views
+├───config
+├───public
+├───static
+│   ├───css
+│   ├───icon
+│   ├───images
+│   │   ├───img-nosotros
+│   │   └───img-producto
+│   ├───imgprod
+│   ├───js
+│   └───php
+
+*La carpeta CSS y Templates es para que suban lo que realicen y así se registre su participación.
+*Yo ya lo agregaré a la estructura correcta.

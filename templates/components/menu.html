@@ -12,7 +12,7 @@
         }
         .menu {
             background-color: var(--primary-color);
-            padding: 15px 0;
+            padding: 8px 0;
         }
         .menu-container {
             display: flex;
@@ -21,11 +21,6 @@
             max-width: 100%;
             margin: 0 auto;
             padding: 0 40px;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--text-color);
         }
         .nav-links {
             list-style: none;
@@ -36,6 +31,7 @@
         .nav-links li {
             margin: 0 10px;
             position: relative;
+            
         }
         .nav-links a {
             text-decoration: none;
@@ -69,25 +65,28 @@
             text-decoration: none;
         }
         .user-actions .icon {
-            font-size: 20px;
+            font-size: 30px;
         }
         .dark-mode-toggle {
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 30px;
             color: var(--text-color);
+        }
+        .logo-img {
+            width: 50px;
         }
     </style>
 </head>
 <body>
     <nav class="menu">
         <div class="menu-container">
-            <div class="logo">Logo</div>
+            <div class="logo"><img src="../static/icon/restaurant.png" alt="" class="logo-img"></div>
             <ul class="nav-links">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Carta</a></li>
-                <li><a href="#">Nosotros</a></li>
+                <li><a href="../templates/principal.php">Inicio</a></li>
+                <li><a href="../templates/carta.php">Carta</a></li>
+                <li><a href="../templates/nosotros.php">Nosotros</a></li>
             </ul>
             <div class="user-actions">
                 <a href="#" class="icon" title="Carrito">🛒</a>

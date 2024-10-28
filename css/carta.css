@@ -1,33 +1,10 @@
 @import url('colors.css');
 
-/* CARTA */
-/*
-    <main class="main">
-        <div class="categorias">
-            <div class="bebidas">
-                <img src="/static/images/bebidas.jpg" alt="">
-                <div class="categoria-info">
-                    <h3>Bebidas</h3>
-                    <p>Descripción de la categoría</p>
-                </div>
-            </div>      
-            <div class="postres">
-                <img src="/static/images/postres.jpg" alt="">
-                <div class="categoria-info">
-                    <h3>Postres</h3>
-                    <p>Descripción de la categoría</p>
-                </div>
-            </div>
-            <div class="platillos">
-                <img src="/static/images/platillos.jpg" alt="">
-                <div class="categoria-info">
-                    <h3>Platillos</h3>
-                    <p>Descripción de la categoría</p>
-                </div>
-            </div>
-        </div>
-    </main>
-*/
+body::-webkit-scrollbar {
+    display: none;
+    /* o 'width: 0;' en lugar de 'display: none;' */
+}
+
 /*----
  MAIN 
  ----*/
@@ -48,7 +25,9 @@
     height: 400px;
 }
 
-.bebidas, .postres, .platillos {
+.bebidas,
+.postres,
+.platillos {
     flex: 1;
     position: relative;
     overflow: hidden;
@@ -58,19 +37,25 @@
     height: 100%;
 }
 
-.bebidas:hover, .postres:hover, .platillos:hover {
+.bebidas:hover,
+.postres:hover,
+.platillos:hover {
     transform: scale(1.05);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-.bebidas img, .postres img, .platillos img {
+.bebidas img,
+.postres img,
+.platillos img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-.bebidas:hover img, .postres:hover img, .platillos:hover img {
+.bebidas:hover img,
+.postres:hover img,
+.platillos:hover img {
     transform: scale(1.1);
 }
 
@@ -104,74 +89,7 @@
     opacity: 0.8;
 }
 
-/*----
- SECTION 
- <section class="section">
-        <div class="carta">
-            <h3>Carta</h3>
-            <div class="carta-container" id="carta-container">
-                <!-- Las tarjetas se generarán dinámicamente aquí -->
-            </div>
-        </div>
-    </section>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Simulación de datos de platillos (en una aplicación real, estos datos vendrían de una API o base de datos)
-            const productos = [
-                { categoria: 'platillos', nombre: 'Enchiladas', descripcion: 'Deliciosas enchiladas con salsa verde', precio: '$120', imagen: '/static/imgprod/platos.jpg' },
-                { categoria: 'platillos', nombre: 'Tacos al Pastor', descripcion: 'Tacos de carne al pastor con piña', precio: '$80', imagen: '/static/imgprod/platos.jpg' },
-                { categoria: 'platillos', nombre: 'Quesadillas', descripcion: 'Quesadillas de queso oaxaca', precio: '$60', imagen: '/static/imgprod/platos.jpg' },
-                { categoria: 'platillos', nombre: 'Mole Poblano', descripcion: 'Tradicional mole poblano con pollo', precio: '$150', imagen: '/static/imgprod/platos.jpg' },
-                { categoria: 'platillos', nombre: 'Chiles en Nogada', descripcion: 'Chiles rellenos con frutos secos y granada', precio: '$180', imagen: '/static/imgprod/platos.jpg' },
-                { categoria: 'platillos', nombre: 'Pozole', descripcion: 'Sopa tradicional de maíz con carne', precio: '$100', imagen: '/static/imgprod/platos.jpg' },
-                { categoria: 'platillos', nombre: 'Tamales', descripcion: 'Tamales de pollo en hoja de maíz', precio: '$40', imagen: '/static/imgprod/platos.jpg' },
-                { categoria: 'platillos', nombre: 'Cochinita Pibil', descripcion: 'Carne de cerdo adobada estilo Yucatán', precio: '$130', imagen: '/static/imgprod/platos.jpg' },
-                { categoria: 'platillos', nombre: 'Guacamole', descripcion: 'Fresco guacamole con totopos', precio: '$70', imagen: '/static/imgprod/platos.jpg' },
-                { categoria: 'bebidas', nombre: 'Café', descripcion: 'Café recién hecho', precio: '$50', imagen: '/static/imgprod/bebidas.jpg' },
-                { categoria: 'bebidas', nombre: 'Té', descripcion: 'Té caliente o frío', precio: '$40', imagen: '/static/imgprod/bebidas.jpg' },
-                { categoria: 'bebidas', nombre: 'Refresco', descripcion: 'Refresco de cola o limón', precio: '$30', imagen: '/static/imgprod/bebidas.jpg' },
-                { categoria: 'bebidas', nombre: 'Jugo', descripcion: 'Jugo natural de naranja o toronja', precio: '$35', imagen: '/static/imgprod/bebidas.jpg' },
-                { categoria: 'postres', nombre: 'Pastel de Chocolate', descripcion: 'Delicioso pastel de chocolate', precio: '$90', imagen: '/static/imgprod/postres.jpg' },
-                { categoria: 'postres', nombre: 'Helado', descripcion: 'Helado de vainilla o chocolate', precio: '$60', imagen: '/static/imgprod/postres.jpg' },
-                { categoria: 'postres', nombre: 'Flan', descripcion: 'Flan de caramelo', precio: '$50', imagen: '/static/imgprod/postres.jpg' },
-                { categoria: 'postres', nombre: 'Gelatina', descripcion: 'Gelatina de frutas', precio: '$40', imagen: '/static/imgprod/postres.jpg' }
-            ];
 
-            const cartaContainer = document.getElementById('carta-container');
-
-            // Crear un objeto para almacenar las tarjetas de cada categoría
-            const tarjetasPorCategoria = {};
-
-            // Llenar el objeto con las tarjetas de cada categoría
-            productos.forEach(producto => {
-                if (!tarjetasPorCategoria[producto.categoria]) {
-                    tarjetasPorCategoria[producto.categoria] = [];
-                }
-                const tarjeta = document.createElement('div');
-                tarjeta.className = 'tarjeta-platillo';
-                tarjeta.innerHTML = `
-                    <img src="${producto.imagen}" alt="${producto.nombre}" class="imagen-platillo">
-                    <h4>${producto.nombre}</h4>
-                    <p>${producto.descripcion}</p>
-                    <span class="precio">${producto.precio}</span>
-                `;
-                tarjetasPorCategoria[producto.categoria].push(tarjeta);
-            });
-
-            // Mostrar las tarjetas de cada categoría
-            for (const categoria in tarjetasPorCategoria) {
-                const h2 = document.createElement('h2');
-                h2.textContent = categoria;
-                h2.style.width = '100%'; // Esto asegura que el título de la categoría ocupe toda una línea
-                cartaContainer.appendChild(h2);
-                cartaContainer.appendChild(document.createElement('hr')); // Añadir un salto de línea después de cada título de categoría
-                tarjetasPorCategoria[categoria].forEach(tarjeta => {
-                    cartaContainer.appendChild(tarjeta);
-                });
-            }
-        });
-    </script>
- ----*/
 .section {
     padding: 20px;
     background-color: var(--base-color);
@@ -234,6 +152,53 @@
     color: var(--color-fifth);
     margin: 0 15px 15px;
 }
-h2{
+
+h2 {
     width: 100%;
 }
+
+
+/* Estilos para el modal */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff; 
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40% !important; 
+    overflow-y: auto;
+}
+
+.modal img {
+    max-width: 300px;
+    width: 70%;
+    height: auto;
+    display: block; 
+    margin: 0 auto; 
+}
+
+.close {
+    color: #aaa; 
+    float: right; 
+    font-size: 28px; 
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black; 
+    text-decoration: none; 
+    cursor: pointer;
+}
+

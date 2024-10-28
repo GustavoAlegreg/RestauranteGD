@@ -1,80 +1,44 @@
+<!--
+<DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Iniciar Sesión</h2>
+    <?php
+    //if (!session_id()) {
+    //    session_start();
+    //}
+    //if (isset($_SESSION['error'])) {
+    //    echo '<p style="color:red">' . $_SESSION['error'] . '</p>';
+    //    unset($_SESSION['error']);
+    //}
+    ?>
+    <form action="/public/index.php" method="POST">
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Ingresar</button>
+    </form>
+</body>
+</html-->
+
 <?php
-require_once '../static/php/conexion.php';
+require_once '../../static/php/conexion.php';
+require_once '../../app/controllers/UsuarioController.php';
 
-function iniciarSesion($conn) {
+$usuarioController = new UsuarioController($conn);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['iniciar_sesion'])) {
-        $usuario = $_POST['usuario'];
-        $clave = $_POST['clave']; 
-
-        $sql = "SELECT * FROM cliente WHERE Usuario = ?"; // Asegúrate de que "Usuario" esté correcto
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $usuario);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $fila = $result->fetch_assoc();
-            var_dump($fila); // Para depuración
-
-            // Cambiar "contraseña" a "Contraseña"
-            if (isset($fila['Contraseña'])) { 
-                $clave_hasheada = hash('sha256', $clave);
-                if ($clave_hasheada === $fila['Contraseña']) { // Cambia aquí también
-                    header("Location: ../templates/principal.php");
-                    exit();
-                } else {
-                    echo "Error: La contraseña proporcionada es incorrecta.";
-                }
-            } else {
-                echo "Error: No se encontró la contraseña en la base de datos.";
-            }
-        } else {
-            echo "Error: El nombre de usuario proporcionado no se encuentra en la base de datos.";
-        }
-    } else {
-        echo "Error: No se proporcionaron credenciales válidas.";
+        $mensaje = $usuarioController->iniciarSesion($_POST['usuario'], $_POST['clave']);
+    } elseif (isset($_POST['registro'])) {
+        $nuevo_usuario = new Usuario($_POST['nuevo_usuario'], $_POST['nueva_clave'], $_POST['nombre'], $_POST['apellidos'], $_POST['dni']);
+        $mensaje = $usuarioController->registrarUsuario($nuevo_usuario);
     }
-}
-
-
-
-// Función para el registro de usuario con contraseña hasheada con SHA-256
-function registrarUsuario($conn) {
-    if (isset($_POST['registro'])) {
-        $nuevo_usuario = $_POST['nuevo_usuario'];
-        $nueva_clave = hash('sha256', $_POST['nueva_clave']); // Hasheando la contraseña antes de insertarla en la base de datos
-        
-        // Obtener los datos adicionales
-        $nombre = $_POST['nombre'];
-        $apellidos = $_POST['apellidos'];
-        $dni = $_POST['dni'];
-
-        // Modificar la consulta SQL para incluir los nuevos campos
-        $sql = "INSERT INTO cliente (usuario, contraseña, nombre, apellidopaterno, dni) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssss", $nuevo_usuario, $nueva_clave, $nombre, $apellidos, $dni);
-        
-        if ($stmt->execute()) {
-            echo "Registro de usuario exitoso. Puedes iniciar sesión ahora.";
-        } else {
-            if ($stmt->errno == 1062) {
-                echo "Error: El nombre de usuario ya existe en la base de datos.";
-            } else {
-                echo "Error: " . $stmt->error;
-            }
-        }
-    } else {
-        echo "Error: No se proporcionaron credenciales válidas para el registro.";
-    }
-}
-
-// Relacionando las funciones con los botones
-if (isset($_POST['iniciar_sesion'])) {
-    iniciarSesion($conn);
-}
-
-if (isset($_POST['registro'])) {
-    registrarUsuario($conn);
 }
 ?>
 
@@ -87,7 +51,8 @@ if (isset($_POST['registro'])) {
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-
+    <?php if (isset($mensaje)) echo "<p>$mensaje</p>"; ?>
+    
     <div class="registro-container login">
         <form action="login.php" method="post" class="registro-form">
             <h1>¡Hola!</h1>
@@ -149,6 +114,5 @@ if (isset($_POST['registro'])) {
             <button class="toggle-registro btn1 registro-toggle" onclick="toggleLogin()">Iniciar Sesión</button>
         </form>    
     </div>
-
 </body>
 </html>

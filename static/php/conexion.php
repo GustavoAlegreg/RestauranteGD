@@ -7,7 +7,7 @@ $dbname = "galegre";
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verificar conexión
+/* Verificar conexión
 if ($conn->connect_error) {
   die("Conexión fallida: " . $conn->connect_error);
 } elseif ($conn->connect_errno == 1049) {
@@ -18,7 +18,7 @@ if ($conn->connect_error) {
   die("No se puede conectar al servidor, revise su servidor y puerto");
 } else {
   echo "Conexión exitosa";
-}
+}*/
 ?>
 
 

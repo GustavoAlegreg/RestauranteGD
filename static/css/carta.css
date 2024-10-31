@@ -1,0 +1,222 @@
+@import url('colors.css');
+
+body::-webkit-scrollbar {
+    display: none;
+    /* o 'width: 0;' en lugar de 'display: none;' */
+}
+
+/*----
+ MAIN 
+ ----*/
+.main {
+    padding: 40px 20px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.categorias {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+    height: 400px;
+}
+
+.bebidas,
+.postres,
+.platillos {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.bebidas:hover,
+.postres:hover,
+.platillos:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.bebidas img,
+.postres img,
+.platillos img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.bebidas:hover img,
+.postres:hover img,
+.platillos:hover img {
+    transform: scale(1.1);
+}
+
+.categoria-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.bebidas:hover .categoria-info,
+.postres:hover .categoria-info,
+.platillos:hover .categoria-info {
+    transform: translateY(0);
+}
+
+.categoria-info h3 {
+    margin: 0 0 10px;
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.categoria-info p {
+    font-size: 1em;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/*
+    <section class="section carta-section">
+        <div class="carta carta-container">
+            <h3 class="carta-title">Carta</h3>
+            <div class="carta-content" id="carta-container">
+                <?php
+                // Conectar a la base de datos
+                require_once '../../app/dao/ProductosDAO.php';
+
+                $productosDAO = new ProductosDAO();
+                $productos = $productosDAO->all();
+
+                // Asegúrate de que $productos sea un arreglo y no un objeto
+                if (is_array($productos)) {
+                    foreach ($productos as $producto) {
+                        // Aquí accedemos a los elementos del arreglo, no a métodos de un objeto
+                        echo '<div class="producto carta-item">';
+                        echo '<h4 class="producto-title">' . htmlspecialchars($producto['nombre_prod']) . '</h4>';
+                        echo '<p class="producto-description">' . htmlspecialchars($producto['descripcion']) . '</p>';
+                        echo '<p class="producto-price">Precio: ' . htmlspecialchars($producto['precio']) . '</p>';
+                        echo '<img src="../../static/images/img-producto/' . htmlspecialchars($producto['foto_prod']) . '.jpg" alt="Imagen de ' . htmlspecialchars($producto['nombre_prod']) . '" class="producto-image">';
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<p class="no-products-found">No se encontraron productos.</p>';
+                }
+                ?>
+            </div>
+            <p id="error-message" class="error-message"></p>
+        </div>
+    </section>
+*/
+
+/* Estilos para el modal */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff; 
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40% !important; 
+    overflow-y: auto;
+}
+
+.modal img {
+    max-width: 300px;
+    width: 70%;
+    height: auto;
+    display: block; 
+    margin: 0 auto; 
+}
+
+.close {
+    color: #aaa; 
+    float: right; 
+    font-size: 28px; 
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black; 
+    text-decoration: none; 
+    cursor: pointer;
+}
+
+/* Estilos para la sección de la carta 
+.carta-section {
+    background-color: #ffffff; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 20px; 
+}
+
+.carta-title {
+    text-align: center; 
+    font-size: 2em; 
+    margin-bottom: 20px; 
+    color: #333; 
+}
+
+.carta-content {
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 20px; 
+}
+
+.producto {
+    background-color: #f9f9f9; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    padding: 15px; 
+    text-align: center; 
+    transition: transform 0.2s; 
+}
+
+.producto:hover {
+    transform: scale(1.05); 
+}
+
+.producto-title {
+    font-size: 1.5em; 
+    margin: 10px 0; 
+}
+
+.producto-description {
+    font-size: 1em; 
+    color: #666; 
+}
+
+.producto-price {
+    font-weight: bold; 
+    margin: 10px 0; 
+}
+
+.producto-image {
+    height: 300px; 
+    overflow: hidden;
+}
+*/

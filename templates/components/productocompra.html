@@ -1,0 +1,35 @@
+<section class="modal_ventana column-3 bg_light">
+    <article class="mv_head">
+        <a class="btn_cerrar">
+            <div class="close color_text"><i class="ai-x-small"></i></div>
+        </a>
+    </article>
+    <article class="mv_body">
+        <div class="p1 ml2">
+            <h4 class="font_w600 sz24"><i class="ki-outline ki-rocket"></i> Inscribir asesoria </h4>
+        </div>
+        <form method="POST" class="p1 ml2" action="/inscribirse_asesoria">
+            <aside class="form_column">
+                <div class="group dg alit_c">
+                    <input type="text" name="idEstudiante" value="1">
+                    <input type="text" name="idAsesoria" th:value="${asesoria.idAsesoria}"/>
+
+                    <p class="color_span font_w500 mb1">Seleccionar sesión</p>
+
+                <article class="dg gap05 mt1" th:each="sesion, iterStat : ${asesoria.sesiones}" >
+                    <div class="checkbox_radio alit_c posit_rel df gap1">
+                        <input type="radio" name="idSesion" th:id="${sesion.idSesion}" th:value="${sesion.idSesion}">
+                        <label th:for="${sesion.idSesion}" class="color_span" th:text="${sesion.dia + ': ' + sesion.horaInicial + ' - ' + sesion.horaFinal}"></label>
+                    </div>
+                </article>
+                
+                
+                </div>
+
+                <div class="users_btn">
+                    <button class="button button_2 bg_dark color_light sz16 font_w500" type="submit"> <i class="ai-save"></i> Inscribirse </button>
+                </div>
+            </aside>
+        </form>
+    </article>
+</section>

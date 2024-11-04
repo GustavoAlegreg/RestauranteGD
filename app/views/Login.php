@@ -29,12 +29,27 @@
 <?php
 require_once '../../static/php/conexion.php';
 require_once '../../app/controllers/UsuarioController.php';
+require_once '../../config/session.php';
 
 $usuarioController = new UsuarioController($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['iniciar_sesion'])) {
         $mensaje = $usuarioController->iniciarSesion($_POST['usuario'], $_POST['clave']);
+    } elseif (isset($_POST['registro'])) {
+        $nuevo_usuario = new Usuario($_POST['nuevo_usuario'], $_POST['nueva_clave'], $_POST['nombre'], $_POST['apellidos'], $_POST['dni']);
+        $mensaje = $usuarioController->registrarUsuario($nuevo_usuario);
+    }
+}
+
+$usuarioController = new UsuarioController($conn);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['iniciar_sesion'])) {
+        $mensaje = $usuarioController->iniciarSesion($_POST['usuario'], $_POST['clave']);
+        if ($mensaje === "Inicio de sesión exitoso") { // Suponiendo que este es el mensaje de éxito
+            guardarDatosSesion($_POST['usuario']); // Guardar el usuario en la sesión
+        }
     } elseif (isset($_POST['registro'])) {
         $nuevo_usuario = new Usuario($_POST['nuevo_usuario'], $_POST['nueva_clave'], $_POST['nombre'], $_POST['apellidos'], $_POST['dni']);
         $mensaje = $usuarioController->registrarUsuario($nuevo_usuario);
@@ -48,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../../css/login.css">
 </head>
 <body>
     <?php if (isset($mensaje)) echo "<p>$mensaje</p>"; ?>

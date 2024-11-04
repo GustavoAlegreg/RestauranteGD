@@ -9,62 +9,6 @@
     <!-- Enlace a CSS -->
     <link rel="stylesheet" href="../../static/css/carta.css">
     <link rel="shortcut icon" href="../icon/favicon.ico" type="image/x-icon">
-    <style>
-        /*Estilo de las cartas*/
-        .producto {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            margin: 10px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-            width: 300px; /* Ancho máximo de la carta */
-        }
-        .producto:hover {
-            transform: scale(1.05);
-        }
-        .producto-image {
-            width: 100%;
-            height: 150px; /* Tamaño fijo para la imagen */
-            object-fit: cover;
-            border-radius: 10px 10px 0 0;
-        }
-        .producto-info {
-            padding: 10px;
-        }
-        .producto-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .producto-description {
-            font-size: 1em;
-            color: #666;
-            margin-bottom: 10px;
-        }
-        .producto-price {
-            font-weight: bold;
-            color: #333;
-        }
-        /* Estilos adicionales para hacer que el contenido de la carta sea flex */
-        .carta-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        /* Estilos para alinear la imagen a la izquierda y la información a la derecha */
-        .producto-image-container {
-            flex: 1;
-            margin-right: 10px;
-        }
-        .producto-info {
-            flex: 1;
-        }
-    </style>
 
 </head>
 <body>
@@ -138,28 +82,112 @@
         </div>
     </section>
     
-    <!-- Modal -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h4 id="modal-nombre"></h4>
-            <h5 id="modal-categoria"></h5>
-            <img id="modal-imagen" src="" alt="" class="imagen-platillo">
-            <p id="modal-descripcion"></p>
-            <span class="precio" id="modal-precio"></span>
-
-            <div class="cantidad-container mt-3">
-                <button id="btn-decrementar" class="btn btn-secondary">-</button>
-                <span id="cantidad" class="mx-2">1</span>
-                <button id="btn-incrementar" class="btn btn-secondary">+</button>
+    <section class="section carta-section">
+        <div class="carta carta-container">
+            <h3 class="carta-title">Carta de Menú</h3>
+            <div class="carta-content" id="carta-container">
+            <?php
+            // Conectar a la base de datos
+            require_once '../../app/dao/ProductosDAO.php';
+                        
+            $productosDAO = new ProductosDAO();
+            $productos = $productosDAO->all();
+                        
+            if (is_array($productos)) {
+                foreach ($productos as $producto) {
+                    // Aquí se agrega el evento onclick para abrir el modal y pasar los datos
+                    echo '<div class="producto carta-item" onclick="abrirModal(' . htmlspecialchars(json_encode($producto)) . ')">';
+                    echo '<div class="producto-image-container">';
+                    echo '<img src="../../static/images/img-producto/' . htmlspecialchars($producto['foto_prod']) . '.jpg" alt="Imagen de ' . htmlspecialchars($producto['nombre_prod']) . '" class="producto-image">';
+                    echo '</div>';
+                    echo '<div class="producto-info">';
+                    echo '<h4 class="producto-title">' . htmlspecialchars($producto['nombre_prod']) . '</h4>';
+                    echo '<p class="producto-description">' . htmlspecialchars($producto['descripcion']) . '</p>';
+                    echo '<p class="producto-price">Precio: ' . htmlspecialchars($producto['precio']) . '</p>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p class="no-products-found">No se encontraron productos.</p>';
+            }
+            ?>
+    
             </div>
-            <button id="btn-agregar" class="btn btn-success mt-3">Agregar al carrito</button>
-            <button id="btn-comprar" class="btn btn-primary mt-3">Comprar</button>
+            <p id="error-message" class="error-message"></p>
         </div>
-    </div>
+    </section>
 
-    <!-- Agregar el script de Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Modal -->
+<div id="modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="cerrarModal()">&times;</span>
+        <h4 id="modal-nombre"></h4>
+        <img id="modal-imagen" src="" alt="" class="imagen-platillo">
+        <p id="modal-descripcion"></p>
+        <span class="precio" id="modal-precio"></span>
+
+        <div class="cantidad-container mt-3">
+            <button id="btn-decrementar" class="btn btn-secondary">-</button>
+            <span id="cantidad" class="mx-2">1</span>
+            <button id="btn-incrementar" class="btn btn-secondary">+</button>
+        </div>
+        <button id="btn-agregar" class="btn btn-success mt-3">Agregar al carrito</button>
+        <button id="btn-comprar" class="btn btn-primary mt-3">Comprar</button>
+    </div>
+</div>
+<!-- Agregar el script de Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    let cantidadActual = 1; // Inicializa la cantidad
+
+    // Función para abrir el modal y cargar la información del producto
+    function abrirModal(producto) {
+        document.getElementById('modal-nombre').textContent = producto.nombre_prod;
+        document.getElementById('modal-imagen').src = `../../static/images/img-producto/${producto.foto_prod}.jpg`;
+        document.getElementById('modal-descripcion').textContent = producto.descripcion;
+        document.getElementById('modal-precio').textContent = `Precio: ${producto.precio}`;
+        
+        // Restablecer la cantidad al abrir el modal
+        cantidadActual = 1;
+        document.getElementById('cantidad').textContent = cantidadActual;
+
+        // Mostrar el modal
+        document.getElementById('modal').style.display = 'block';
+    }
+
+    // Función para cerrar el modal
+    function cerrarModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    // Cerrar el modal cuando se hace clic fuera de él
+    window.onclick = function(event) {
+        const modal = document.getElementById('modal');
+        if (event.target == modal) {
+            cerrarModal();
+        }
+    }
+
+    // Funciones para incrementar y decrementar la cantidad
+    function incrementarCantidad() {
+        cantidadActual++;
+        document.getElementById('cantidad').textContent = cantidadActual;
+    }
+
+    function decrementarCantidad() {
+        if (cantidadActual > 1) { // Evita que la cantidad sea menor que 1
+            cantidadActual--;
+            document.getElementById('cantidad').textContent = cantidadActual;
+        }
+    }
+
+    // Agregar eventos a los botones de cantidad
+    document.getElementById('btn-incrementar').addEventListener('click', incrementarCantidad);
+    document.getElementById('btn-decrementar').addEventListener('click', decrementarCantidad);
+</script>
+
+    
 
     <script>
         // Función para cargar el menú
@@ -207,6 +235,8 @@
         // Llamar a la función cuando se carga la página
         window.addEventListener('load', cargarCarrusel);
     </script>
+
+
 
    
 </body>

@@ -1,0 +1,192 @@
+body::-webkit-scrollbar {
+    display: none;
+    /* o 'width: 0;' en lugar de 'display: none;' */
+}
+body {
+    border: 1px solid #ddd; /* Borde que envuelve todo el cuerpo */
+    margin: 40px;
+    border-radius: 8px;
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        margin: 20px;
+    }
+}
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden; /* Elimina la scrollbar vertical */
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        flex-direction: column;
+    }
+}
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 40%;
+    background-color: #f9f9f9; /* Color de fondo personalizado */
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        width: 100%;
+        margin: 10px;
+    }
+}
+.formulario .filas{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd; /* Añadido para dar estilo a las filas */
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+.formulario .filas label{
+    padding: 20px;
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        padding: 10px;
+    }
+}
+.formulario input[type="text"],
+.formulario input[type="number"],
+.formulario select,
+.formulario textarea {
+    width: 95%;
+    padding: 10px;            
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #adad23; /* Color de fondo personalizado */
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        width: 100%;
+    }
+}
+.formulario input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold; /* Fuente en negrita */
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+.formulario input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.boton-estilizado {
+    padding: 10px 20px;
+    background-color: #007bff; /* Color de fondo personalizado */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold; /* Fuente en negrita */
+}
+
+.boton-estilizado:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+}
+.lista-productos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    width: 40%;
+    background-color: #f9f9f9; /* Color de fondo personalizado */
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        width: 100%;
+        margin: 10px;
+    }
+}
+.lista-productos .producto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff; /* Color de fondo personalizado */
+    margin-bottom: 10px; /* Añadido para dar espacio entre cada producto */
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+.lista-productos .producto:last-child {
+    border-bottom: none;
+}
+.lista-productos .producto span{
+    padding: 10px;
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        padding: 5px;
+    }
+}
+.lista-productos .producto button {
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;        
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        width: 30px;
+        height: 30px;
+    }
+}
+.lista-productos .producto button.editar {
+    background-color: #007bff;
+    color: white;
+    margin-right: 10px; /* Añadido para dar espacio entre los botones */
+    /* Estilos responsivos para dispositivos pequeños */
+    @media (max-width: 1080px) {
+        margin-right: 5px;
+    }
+}
+.lista-productos .producto button.editar:hover {
+    background-color: #0056b3;
+}
+.lista-productos .producto button.eliminar {
+    background-color: #FF0000;
+    color: white;
+}
+.lista-productos .producto button.eliminar:hover {
+    background-color: #D35400;
+}
+.img-prev {
+    max-height: 60px;            
+    justify-content: center !important;
+    border-radius: 5px;
+    /* Estilos responsivos para dispositivos pequeños */
+}
